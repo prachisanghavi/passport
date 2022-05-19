@@ -1,0 +1,297 @@
+<html>
+
+<head>
+    <title>prime number</title>
+    <script>
+        function primeall() {
+            var number = document.getElementById('num').value;
+            var mob = /^[0-9]+$/;
+            var isnum = mob.test(document.getElementById("num").value);
+
+            if (document.getElementById("num").value == "") {
+                document.getElementById('p1').innerHTML = "<p>Enter number</p>";
+            }
+            else if (!isnum) {
+                document.getElementById('p1').innerHTML = "Enter only valid number</p>";
+            }
+            else if (document.querySelector('input[name="t1"]:checked') == null) {
+                document.getElementById('p1').innerHTML = "select radio button";
+            }
+            else if (document.getElementById("num").value == "1") {
+                document.getElementById('p1').innerHTML = "1 is not a prime number not a composite number";
+            }
+            else if (document.getElementById("f1").checked == true) {
+                return prime1();
+            }
+            else if (document.getElementById("f2").checked == true) {
+                return prime2(number);
+            }
+            else if (document.getElementById("f3").checked == true) {
+                return submit1();
+            }
+            else if (document.getElementById("f4").checked == true) {
+                return submit2();
+            }
+            else if (document.getElementById("f5").checked == true) {
+                return prime5();
+            }
+            else if (document.getElementById("f6").checked == true) {
+                return submit();
+            }
+            else if (document.getElementById("f7").checked == true) {
+                return prime7(number);
+            }
+            else if (document.getElementById("f8").checked == true) {
+                return submit4();
+            }
+        }
+        //1
+        function prime1() {
+            var number = document.getElementById('num').value;
+            let isprime = true;
+            if (number == 1) {
+                document.getElementById('p1').innerHTML = "<p>1 is neither prime number nor composite number</p>";
+            }
+            else if (number > 1) {
+                for (let i = 2; i < number; i++) {
+                    if (number % i == 0) {
+                        isprime = false;
+                        break;
+                    }
+                }
+                if (isprime) {
+                    document.getElementById('p1').innerHTML = "<p> number is prime number</P>";
+                } else {
+                    document.getElementById('p1').innerHTML = "<p> number is not a prime number</P>";
+                }
+            }
+            else {
+                document.getElementById('p1').innerHTML = "<p> number is not a positive number</P>";
+            }
+        }
+        //2
+        function prime2(number) {
+            number = document.getElementById('num').value;
+            let isprime = true;
+            if (number == 1) {
+                document.getElementById('p1').innerHTML = "<p>1 is neither prime number nor composite number</p>";
+            }
+            else if (number > 1) {
+                for (let i = 2; i < number; i++) {
+                    if (number % i == 0) {
+                        isprime = false;
+                        break;
+                    }
+                }
+                if (isprime) {
+                    document.getElementById('p1').innerHTML = "<p> number is prime number</P>";
+                } else {
+                    document.getElementById('p1').innerHTML = "<p> number is not a prime number</P>";
+                }
+            }
+            else {
+                document.getElementById('p1').innerHTML = "<p> number is not a positive number</P>";
+            }
+        }
+        //3
+        function submit1() {
+            let p1 = document.getElementById('p1');
+            p1.innerHTML = prime(num);
+        };
+        function prime(n) {
+            var number = n.value;
+            let flag = 0;
+            if (number > 1) {
+                for (let i = 2; i < number; i++) {
+                    if (number % i == 0) {
+                        flag = 1;
+                        break;
+                    }
+                }
+
+            }
+            if (flag == 0)
+                return `${number}is prime number`;
+            else
+                return `${number}is  not prime number`;
+        }
+        //4
+        function submit2() {
+            let result = document.getElementById('p1');
+            result.innerHTML = td();
+        };
+        function td() {
+            var number = num.value;
+            let flag = 1;
+            if (number == 1)
+                document.getElementById('p1').innerHTML = "<p>1 is not a prime number</p>";
+            else if (number > 1) {
+                for (let i = 2; i < number; i++) {
+                    if (number % i == 0) {
+                        flag = 0;
+                        break;
+                    }
+                }
+                if (flag == 1)
+                    return `${number}is prime number`;
+                else
+                    return `${number}is  not prime number`;
+            }
+
+        }
+        //5
+        let prime5 = function (number) {
+            number = document.getElementById('num').value;
+            let isprime = true;
+            if (number == 1) {
+                document.getElementById('p1').innerHTML = "<p>1 is neither prime number nor composite number</p>";
+            }
+            else if (number > 1) {
+                for (let i = 2; i < number; i++) {
+                    if (number % i == 0) {
+                        isprime = false;
+                        break;
+                    }
+                }
+                if (isprime) {
+                    document.getElementById('p1').innerHTML = "<p> number is prime number</P>";
+                } else {
+                    document.getElementById('p1').innerHTML = "<p> number is not a prime number</P>";
+                }
+            }
+            else {
+                document.getElementById('p1').innerHTML = "<p> number is not a positive number</P>";
+            }
+
+        }
+        //6
+        function submit() {
+            prime(num, document.getElementById('p1'), checkPrime)
+        }
+        function prime(number, p1, p) {
+            n = number.value;
+            if (n != "") {
+                if (checkPrime(n))
+                    p1.innerHTML = `${n} is Prime Number}`;
+                else
+                    p1.innerHTML = `${n} is not Prime Number}`;
+            } else {
+                p1.innerHTML = `Please Enter a number`;
+            }
+        }
+        function checkPrime(number) {
+            let flag = true
+            if (number == 1 || number == 0) flag = false;
+            if (number > 1) {
+                for (let i = 2; i <= number / 2; i++) {
+                    if (number % i == 0) {
+                        flag = false
+                        break;
+                    }
+                }
+            }
+            return flag
+        }
+
+        //7
+        let prime7 = number => {
+            let flag = 0
+            if (number == 1 || number == 0)
+                flag = 1;
+            else {
+                for (let i = 2; i <= number / 2; i++) {
+                    if (number % i == 0) {
+                        flag = 1
+                        break;
+                    }
+                }
+            }
+            if (flag == 0) {
+                document.getElementById('p1').innerHTML = "<p> number is prime number</P>";
+            } else {
+                document.getElementById('p1').innerHTML = "<p> number is  not aprime number</P>";
+            }
+        }
+        //8
+        function submit4() {
+            let result = document.getElementById('p1')
+            let number = document.getElementById('num').value
+            let promise = new Promise(function (resolve, reject) {
+                if (number == "")
+                    result.innerHTML = "please,Enter a number";
+                else if (number <= 0)
+                    result.innerHTML = "plase enter positive number"
+                else if (number == 1)
+                    result.innerHTML = "1 is not a prime number"
+                else {
+                    let flag = 0;
+                    for (let i = 2; i <= number / 2; i++) {
+                        if (number % i == 0) {
+                            flag = 1;
+                            break;
+                        }
+                    }
+                    if (flag == 0)
+                        resolve(number);
+                    else
+                        reject(number);
+                }
+            })
+            promise.then(num => {
+                result.innerHTML = `${num} is prime number`;
+            })
+                .catch(num => {
+                    result.innerHTML = `${num} is not a prime number`;
+                })
+        }
+    </script>
+</head>
+
+<body> <br>
+    <h3>prime number or not</h3>
+    <table style="border: 1px solid black;">
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">Enter number</td>
+            <td style="border: 1px solid black;"><input type="text" id="num"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">1.no argument no return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f1" name="t1"></td>
+        </tr style="border: 1px solid black;">
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">2.with argument no return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f2" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">3.with argument with return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f3" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">4.no argument with return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f4" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">5.Function expression</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f5" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">6.call back function</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f6" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">7.arror function</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f7" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">8.promise function</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f8" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;"><input type="button" id="submit" value="submit" onclick="primeall()">
+            </td>
+            <td style="border: 1px solid black;"><span id="p1"></span></td>
+        </tr>
+    </table>
+</body>
+
+</html>

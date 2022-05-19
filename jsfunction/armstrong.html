@@ -1,0 +1,254 @@
+<html>
+
+<head>
+    <title>armstrong number</title>
+    <script>
+        function check() {
+            var number = document.getElementById('num').value;
+            var mob = /^[0-9]+$/;
+            var isnum = mob.test(document.getElementById("num").value);
+
+            if (document.getElementById("num").value == "") {
+                document.getElementById('p1').innerHTML = "Enter number</p>";
+            }
+            else if (!isnum) {
+                document.getElementById('p1').innerHTML = "Enter only valid number";
+            }
+            else if (document.querySelector('input[name="t1"]:checked') == null) {
+                document.getElementById('p1').innerHTML = "select radio button";
+            }
+            else if (document.getElementById("f1").checked == true) {
+                return armstrong1();
+            }
+            else if (document.getElementById("f2").checked == true) {
+                return armstrong2(num);
+            }
+            else if (document.getElementById("f3").checked == true) {
+                return check3(num);
+            }
+            else if (document.getElementById("f4").checked == true) {
+                return check4();
+            }
+            else if (document.getElementById("f5").checked == true) {
+                return armstrong5();
+            }
+            else if (document.getElementById("f6").checked == true) {
+                return submit();
+            }
+            else if (document.getElementById("f7").checked == true) {
+                return armstrong7();
+            }
+            else if (document.getElementById("f8").checked == true) {
+                return submit8();
+            }
+
+        }
+        function armstrong1() {
+            var number = document.getElementById('num').value;
+            let temp, rem, sum = 0;
+            temp = number;
+            while (temp > 0) {
+                rem = temp % 10;
+                sum += rem * rem * rem;
+                temp = parseInt(temp / 10);
+            }
+            if (sum == number)
+                document.getElementById('p1').innerHTML = "<p> number is armstrong</p>";
+            else
+                document.getElementById('p1').innerHTML = "<p> number is not a armstrong</p>";
+        }
+        //2
+        function armstrong2(number) {
+            number = document.getElementById('num').value;
+            let temp, rem, sum = 0;
+            temp = number;
+            while (temp > 0) {
+                rem = temp % 10;
+                sum += rem * rem * rem;
+                temp = parseInt(temp / 10);
+            }
+            if (sum == number)
+                document.getElementById('p1').innerHTML = "<p> number is armstrong</p>";
+            else
+                document.getElementById('p1').innerHTML = "<p> number is not a armstrong</p>";
+        }
+        //3
+        function check3() {
+            let ans = document.getElementById('p1');
+            ans.innerHTML = armstrong3(num);
+        };
+        function armstrong3(number) {
+            number = document.getElementById('num').value;
+            let temp, rem, sum = 0;
+            temp = number;
+            while (temp > 0) {
+                rem = temp % 10;
+                sum += rem * rem * rem;
+                temp = parseInt(temp / 10);
+            }
+            if (sum == number)
+                return `${number}is armstrong number`;
+            else
+                return `${number}is not a armstrong number`;
+        }
+        //4
+        function check4() {
+            let ans = document.getElementById('p1');
+            ans.innerHTML = armstrong4();
+        };
+        function armstrong4() {
+            let number = document.getElementById('num').value;
+            let temp, rem, sum = 0;
+            temp = number;
+            while (temp > 0) {
+                rem = temp % 10;
+                sum += rem * rem * rem;
+                temp = parseInt(temp / 10);
+            }
+            if (sum == number)
+                return `${number}is armstrong number`;
+            else
+                return `${number}is not a armstrong number`;
+        }
+        let armstrong5 = function (number) {
+            number = document.getElementById('num').value;
+            let temp, rem, sum = 0;
+            temp = number;
+            while (temp > 0) {
+                rem = temp % 10;
+                sum += rem * rem * rem;
+                temp = parseInt(temp / 10);
+            }
+            if (sum == number)
+                document.getElementById('p1').innerHTML = "<p> number is armstrong</p>";
+            else
+                document.getElementById('p1').innerHTML = "<p> number is not a armstrong</p>";
+            return number;
+        }
+        //6 
+        function submit() {
+            getReverseNo(num, document.getElementById('p1'), armstrong)
+        }
+        function getReverseNo(number, result, rev) {
+            n = number.value;
+            if (n != "") {
+                if (armstrong(n) == n)
+                    result.innerHTML = `${n} is an Armstrong Number`;
+                else
+                    result.innerHTML = `${n} is not an Armstrong Number`;
+            }
+        }
+        function armstrong(number) {
+            let temp = number;
+            let sum = 0
+            while (temp > 0) {
+                x = temp % 10
+                sum += x * x * x;
+                temp = parseInt(temp / 10)
+            }
+            return sum;
+        }
+        //7
+        let armstrong7 = () => {
+            let Number = document.getElementById('num').value;
+            let remainder, sum = 0,
+                c,
+                temp = Number;
+
+
+            while (Number > 0) {
+                remainder = Number % 10;
+                c = remainder * remainder * remainder;
+                sum = sum + c;
+                Number = parseInt(Number / 10);
+            }
+            Number = temp;
+            if (Number == sum) {
+                document.getElementById('p1').innerHTML = "<p> number is armstrong</p>";
+
+            } else {
+                document.getElementById('p1').innerHTML = "<p> number is  not aarmstrong</p>";
+            }
+
+        }
+        //8
+        function submit8() {
+            let result = document.getElementById('p1')
+            let number = document.getElementById('num').value
+            let promise = new Promise(function (resolve, reject) {
+                if (number == "")
+                    result.innerHTML = "please,Enter a number";
+                else if (number < 0)
+                    result.innerHTML = "please enter positive number"
+                else {
+                    let temp = number;
+                    let sum = 0
+                    while (temp > 0) {
+                        x = temp % 10
+                        sum += x * x * x;
+                        temp = parseInt(temp / 10)
+                    }
+                    if (sum == number)
+                        resolve(number);
+                    else
+                        reject(number);
+                }
+            })
+            promise.then(num => {
+                result.innerHTML = `${num} is armstrong number`;
+            })
+                .catch(num => {
+                    result.innerHTML = `${num} is not a armstrong number`;
+                })
+        }
+    </script>
+</head>
+
+<body>
+    <br>
+    <h3>Check armstrong number</h3>
+    <table style="border: 1px solid black;">
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">Enter number</td>
+            <td style="border: 1px solid black;"><input type="text" id="num"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">1.no argument no return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f1" name="t1"></td>
+        </tr style="border: 1px solid black;">
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">2.with argument no return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f2" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">3.with argument with return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f3" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">4.no argument with return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f4" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">5.Function expression</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f5" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">6.call back function</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f6" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">7.arror function</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f7" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">8.promise function</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f8" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;"><input type="button" id="submit" value="submit" onclick="check()"></td>
+            <td style="border: 1px solid black;"><span id="p1"></span></td>
+        </tr>
+    </table>
+</body>
+
+</html>

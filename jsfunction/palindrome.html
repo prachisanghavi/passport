@@ -1,0 +1,242 @@
+<html>
+
+<head>
+    <title>palindrom number</title>
+    <script>
+        function check() {
+            var number = document.getElementById('num').value;
+            var mob = /^[0-9]+$/;
+            var isnum = mob.test(document.getElementById("num").value);
+
+            if (document.getElementById("num").value == "") {
+                document.getElementById('p1').innerHTML = "Enter number</p>";
+            }
+            else if (!isnum) {
+                document.getElementById('p1').innerHTML = "Enter only valid number</p>";
+            }
+            else if (document.querySelector('input[name="t1"]:checked') == null) {
+                document.getElementById('p1').innerHTML = "select radio button";
+            }
+            else if (document.getElementById("f1").checked == true) {
+                return plindram1();
+            }
+            else if (document.getElementById("f2").checked == true) {
+                return plindram2(num);
+            }
+            else if (document.getElementById("f3").checked == true) {
+                return check1(num);
+            }
+            else if (document.getElementById("f4").checked == true) {
+                return check2();
+            }
+            else if (document.getElementById("f5").checked == true) {
+                return plindram5();
+            }
+            else if (document.getElementById("f6").checked == true) {
+                return submit6();
+            }
+            else if (document.getElementById("f7").checked == true) {
+                return palindrome7();
+            }
+            else if (document.getElementById("f8").checked == true) {
+                return submit8();
+            }
+        }
+        //1
+        function plindram1() {
+            var number = document.getElementById('num').value;
+            let rem, temp, final = 0;
+            temp = number;
+            while (number > 0) {
+                rem = number % 10;
+                number = parseInt(number / 10);
+                final = final * 10 + rem;
+            }
+            if (final == temp)
+                document.getElementById('p1').innerHTML = "<p> number is palindrom</p>";
+            else
+                document.getElementById('p1').innerHTML = "<p> number is not a palindrom</p>";
+        }
+        //2
+        function plindram2(number) {
+            number = document.getElementById('num').value;
+            let rem, temp, final = 0;
+            temp = number;
+            while (number > 0) {
+                rem = number % 10;
+                number = parseInt(number / 10);
+                final = final * 10 + rem;
+            }
+            if (final == temp)
+                document.getElementById('p1').innerHTML = "<p> number is palindrom</p>";
+            else
+                document.getElementById('p1').innerHTML = "<p> number is not a palindrom</p>";
+        }
+        //3
+        function check1() {
+            let result = document.getElementById('p1');
+            p1.innerHTML = plindram(num);
+        };
+        function plindram(number) {
+            number = document.getElementById('num').value;
+            let rem, temp, final = 0;
+            temp = number;
+            while (number > 0) {
+                rem = number % 10;
+                number = parseInt(number / 10);
+                final = final * 10 + rem;
+            }
+            if (final == temp)
+                return `${temp}is palindrome number`;
+            else
+                return `${temp}is not palindrome number`;
+        }
+        //4
+        function check2() {
+            let result = document.getElementById('p1');
+            p1.innerHTML = plindram4();
+        };
+        function plindram4() {
+            let number = document.getElementById('num').value;
+            let rem, temp, final = 0;
+            temp = number;
+            while (number > 0) {
+                rem = number % 10;
+                number = parseInt(number / 10);
+                final = final * 10 + rem;
+            }
+            if (final == temp)
+                return `${temp}is palindrome number`;
+            else
+                return `${temp}is  not palindrome number`;
+        }
+        //5
+        let plindram5 = function (number) {
+            number = document.getElementById('num').value;
+            let rem, temp, final = 0;
+            temp = number;
+            while (number > 0) {
+                rem = number % 10;
+                number = parseInt(number / 10);
+                final = final * 10 + rem;
+            }
+            if (final == temp)
+                document.getElementById('p1').innerHTML = "<p> number is palindrom</p>";
+            else
+                document.getElementById('p1').innerHTML = "<p> number is not a palindrom</p>";
+            return number;
+        }
+        //6
+        function submit6() {
+            palindrome(num, document.getElementById('p1'), palindromeNum)
+        }
+        function palindrome(number, result, rev) {
+            n = number.value;
+            if (n != "") {
+                if (palindromeNum(n))
+                    result.innerHTML = `${n} is Palindrome Number`;
+                else
+                    result.innerHTML = `${n} is not Palindrome Number`;
+            }
+        }
+        function palindromeNum(number) {
+            let flag = false;
+            let value = number.split('');
+            let rev = value.reverse().join('');
+            if (rev == number)
+                flag = true;
+            return flag;
+        }
+        //7
+        let palindrome7 = () => {
+            let Number = document.getElementById('num').value;
+            let remainder, reversed = 0,
+                original = Number;
+
+            while (Number != 0) {
+                remainder = Number % 10;
+                reversed = reversed * 10 + remainder;
+                Number = parseInt(Number / 10);
+            }
+            if (original == reversed) {
+                document.getElementById('p1').innerHTML = "<p> number is palindrom</p>";
+            } else {
+                document.getElementById('p1').innerHTML = "<p> number not a palindrom</p>";
+            }
+
+        }
+        //8
+        function submit8() {
+            let result = document.getElementById('p1')
+            let number = document.getElementById('num').value
+            let promise = new Promise(function (resolve, reject) {
+                if (number == "")
+                    result.innerHTML = "please,Enter a number";
+                else if (number < 0)
+                    result.innerHTML = "please enter positive number"
+                else {
+                    let rev = number.split('').reverse().join('');
+                    if (rev === number)
+                        resolve(number);
+                    else
+                        reject(number);
+                }
+            })
+            promise.then(num => {
+                result.innerHTML = `${num} is palindrome number`;
+            })
+                .catch(num => {
+                    result.innerHTML = `${num} is not a palindrome number`;
+                })
+        }
+    </script>
+</head>
+
+<body>
+    <br>
+    <h3>Check palindrom number</h3>
+    <table style="border: 1px solid black;">
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">Enter number</td>
+            <td style="border: 1px solid black;"><input type="text" id="num"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">1.no argument no return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f1" name="t1"></td>
+        </tr style="border: 1px solid black;">
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">2.with argument no return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f2" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">3.with argument with return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f3" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">4.no argument with return value</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f4" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">5.Function expression</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f5" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">6.call back function</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f6" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">7.arror function</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f7" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;">8.promise function</td>
+            <td style="border: 1px solid black;"> <input type="radio" id="f8" name="t1"></td>
+        </tr>
+        <tr style="border: 1px solid black;">
+            <td style="border: 1px solid black;"><input type="button" id="submit" value="submit" onclick="check()"></td>
+            <td style="border: 1px solid black;"><span id="p1"></span></td>
+        </tr>
+    </table>
+</body>
+
+</html>

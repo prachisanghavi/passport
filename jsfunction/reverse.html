@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>add number</title>
+    <title>reverse number</title>
     <script>
         function check() {
             var number = document.getElementById('num').value;
@@ -18,147 +18,122 @@
                 document.getElementById('p1').innerHTML = "select radio button";
             }
             else if (document.getElementById("f1").checked == true) {
-                return a1();
+                return r1();
             }
             else if (document.getElementById("f2").checked == true) {
-                return a2(num);
+                return r2(num.value, document.getElementById('p1'));
             }
             else if (document.getElementById("f3").checked == true) {
-                return a3(num);
+                return submit1();
             }
             else if (document.getElementById("f4").checked == true) {
-                return a4();
+                return submit2();
             }
             else if (document.getElementById("f5").checked == true) {
-                return a5();
+                return rev5();
             }
             else if (document.getElementById("f6").checked == true) {
-                return a6();
+                return submit6();
             }
             else if (document.getElementById("f7").checked == true) {
                 return a7();
             }
             else if (document.getElementById("f8").checked == true) {
-                a8(num.value, document.getElementById('p1'));
+                r8(num.value, document.getElementById('p1'));
             }
         }
         //1
-        function a1() {
+        function r1() {
             let n = num.value
-            let sum = 0;
-            let temp = n;
-            while (temp > 0) {
-                sum += temp % 10;
-                temp = parseInt(temp / 10)
-            }
-            p1.innerHTML = `Adding digit of ${n} is ${sum} `;
+            let rev = n.split('').reverse().join('');
+            p1.innerHTML = `Reverse of ${n} is ${rev} `;
         }
         //2
-        function a2(number) {
-            let n = num.value
-            let sum = 0;
-            let temp = n;
-            while (temp > 0) {
-                sum += temp % 10;
-                temp = parseInt(temp / 10)
-            }
-            p1.innerHTML = `Adding digit of ${n} is ${sum} `;
+        function r2(number, result) {
+            let rev = number.split('').reverse().join('');
+            result.innerHTML = `Reverse of ${number} is ${rev}`;
         }
         //3
-        function a3() {
-            document.getElementById('p1').innerHTML = add1(num)
+        function submit1() {
+            document.getElementById('p1').innerHTML = reverse2(num);
         };
-        function add1(number) {
-            n = number.value;
-            if (n != "") {
-                let sum = 0,
-                    t = n;
-                while (t > 0) {
-                    sum += (t % 10)
-                    t = parseInt(t /= 10)
-                }
-
-                return `Adding of digit sum is ${sum}`;
+        function reverse2(number) {
+            n = number.value
+            let a, b, sum = 0;
+            a = n;
+            while (a > 0) {
+                b = a % 10;
+                sum = sum * 10 + b;
+                a = parseInt(a / 10);
             }
+            return `Reverse of ${n} is ${sum}`;
         }
         //4
-        function a4() {
+        function submit2() {
             let ans = document.getElementById('p1');
-            ans.innerHTML = adddigit();
+            ans.innerHTML = reverse1();
         };
-        function adddigit() {
+        function reverse1() {
             let number = document.getElementById('num').value;
-            let t, sum = 0;
-            t = number;
-            while (t > 0) {
-                sum += t % 10;
-                t = Math.floor(t / 10)
+            let a, b, sum = 0, result;
+            a = number;
+            while (a > 0) {
+                b = a % 10;
+                sum = sum * 10 + b;
+                a = parseInt(a / 10);
             }
-            return ` add digit is ${sum}`;
+            return ` Reverse number is ${sum}`;
         }
         //5
-        let a5 = function () {
+        let rev5 = function () {
             let number = document.getElementById('num').value;
-            let sum = 0,
-                temp = number;
-            while (temp > 0) {
-                sum += temp % 10;
-                temp = parseInt(temp / 10)
-            }
-            p1.innerHTML = `Adding digit of ${number} is ${sum}`;
+            let rev = number.split('').reverse().join('');
+            p1.innerHTML = `Reverse of ${number} is ${rev} `;
         }
         //6
-        function a6() {
-            addDigits(num, document.getElementById('p1'), sumOfDigits)
+        function submit6() {
+            getReverseNo(num, document.getElementById('p1'), reverse)
         }
-        function addDigits(number, result, sum) {
+        function getReverseNo(number, result, rev) {
             n = number.value;
             if (n != "") {
-                p1.innerHTML = `Adding digit of ${n} is ${sum(n)}`;
+                result.innerHTML = `Reverse of ${n} is ${rev(n)}`;
             } else {
-                p1.innerHTML = `Please Enter a number`;
+                number.focus();
+                result.innerHTML = `Please Enter a number`;
             }
         }
-        function sumOfDigits(number) {
-            let sum = 0
-            while (number > 0) {
-                sum += (number % 10);
-                number = parseInt(number / 10);
-            }
-            return sum;
+        function reverse(number) {
+            r = number.split('').reverse().join('');
+            return r;
         }
         //7
         let a7 = num => {
             var num = document.getElementById('num').value;
-            let sum = 0,
-                temp = num;
-            while (temp > 0) {
-                sum += temp % 10;
-                temp = parseInt(temp / 10)
+            let sum = 0, a, b;
+            a = num;
+            while (a > 0) {
+                b = a % 10;
+                sum = sum * 10 + b;
+                a = parseInt(a / 10);
             }
-            p1.innerHTML = `Adding digit of ${num} is ${sum} `;
+            p1.innerHTML = `reverse is ${sum} `;
         }
         //8
-        function a8(number, p1) {
-            var number = document.getElementById('num').value;
-            var p = document.getElementById('p1').value;
+        function r8(number, p1) {
             let promise = new Promise(function (resolve, reject) {
-
-                let sum = 0,
-                    temp = number;
-                while (temp > 0) {
-                    sum += temp % 10;
-                    temp = parseInt(temp / 10)
-                }
-                resolve([number, sum]);
+                let ch = number.split('');
+                let re = ch.reverse().join('')
+                resolve([number, re]);
             })
-            promise.then(([n, add]) => p1.innerHTML = `Adding digit of ${n} is ${add}`)
+            promise.then(([n, r]) => p1.innerHTML = `Reverse of ${n} is ${r} `)
         }
+
     </script>
 </head>
 
-<body> <br>
-    <h3>Adding of Digit</h3>
+<body><br>
+    <h3>Reverse number with function</h3>
     <table style="border: 1px solid black;">
         <tr style="border: 1px solid black;">
             <td style="border: 1px solid black;">Enter number</td>
