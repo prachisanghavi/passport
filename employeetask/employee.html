@@ -1,1 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <title>Local localStorage</title>
+    <style>
+        body {
+            background-image: url('photo2.JPG');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-xl-9">
+
+                <h2 class="text-black">Employee Information</h2>
+
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body">
+
+                        <div class="row align-items-center pt-4 pb-3">
+                            <div class="col-md-3 ps-5">
+
+                                <h6 class="mb-0">Name</h6>
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <input type="text" class="form-control" id="name">
+
+                            </div>
+                        </div>
+
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3 ">
+
+                                <h6 class="mb-0">Email</h6>
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <input type="email" class="form-control" id="Email">
+
+                            </div>
+                        </div>
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3">
+
+                                <h6 class="mb-0">Mobile Number</h6>
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <input class="form-control" type="text" id="no">
+
+                            </div>
+                        </div>
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3">
+
+                                <h6 class="mb-0">Country</h6>
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <input class="form-control text-align-center" id="country" name="country" value="India"
+                                    disabled>
+
+                            </div>
+                        </div>
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3">
+
+                                <h6 class="mb-0">State</h6>
+
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" id="state" onclick="update()">
+                                    <option selected="selected" value="">Select State</option>
+
+                                    <option value="Madhya pradesh">Madhya pradesh</option>
+                                    <option value="Gujarat">Gujarat</option>
+
+                                    <option value="Maharastra">Maharastra</option>
+                                    <option value="odisha">odisha</option>
+                                    <option value="Rajeshthan">Rajeshthan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3">
+
+                                <h6 class="mb-0">City</h6>
+
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" id="city">
+                                    <option selected="selected" value="0">Select City</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-3">
+
+                                <h6 class="mb-0">Address</h6>
+
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" type="text" id="address">
+                            </div>
+                        </div>
+                        <div class="align-items-center py-4">
+
+                            <input type="button" class="btn btn-primary btn-lg" value="Submit"
+                                onclick="return submit()">
+
+                            <input type="button" class="btn btn-primary btn-lg" value="Search"
+                                onclick="return getItem()">
+
+                        </div>
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-12">
+
+                                <small id="error" style="color: brown;"></small>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function update() {
+            var Gujarat = ["Select City", "Ahmedabad", "Rajkot", "Jamnagar", "Bhuj", "Gandhinagar"];
+            var Madhyapradesh = ["Select City", "Indor", "Bhopal", "Japalpur", "Gwalior", "Katni"];
+            var Maharastra = ["Select City", "Mumbai", "Pune", "Nagar", "Thane", "Nashik"];
+            var odisha = ["Select City", "Bhubaneswer", "cuttack", "Rourkela", "Berhampur", "Puri"];
+            var Rajeshthan = ["Select City", "Jaipur", "Udaipur", "Jaisalmer", "Jodhpur", "Bikaner"];
+            var cities = document.getElementById("city");
+            var html = 'option selected="selected">Select City</option>';
+            if (document.getElementById("state").value == "Gujarat") {
+                for (i = 0; i < Gujarat.length; i++) {
+                    html += '<option value="' + Gujarat[i] + '">' + Gujarat[i] + '</option>';
+                }
+            } else if (document.getElementById("state").value == "Madhya pradesh") {
+                for (j = 0; j < Madhyapradesh.length; j++) {
+                    html += '<option value="' + Madhyapradesh[j] + '">' + Madhyapradesh[j] + '</option>';
+                }
+            } else if (document.getElementById("state").value == "Maharastra") {
+                for (k = 0; k < Madhyapradesh.length; k++) {
+                    html += '<option value="' + Maharastra[k] + '">' + Maharastra[k] + '</option>';
+                }
+            } else if (document.getElementById("state").value == "odisha") {
+                for (h = 0; h < Madhyapradesh.length; h++) {
+                    html += '<option value="' + odisha[h] + '">' + odisha[h] + '</option>';
+                }
+            } else if (document.getElementById("state").value == "Rajeshthan") {
+                for (n = 0; n < Madhyapradesh.length; n++) {
+                    html += '<option value="' + Rajeshthan[n] + '">' + Rajeshthan[n] + '</option>';
+                }
+            }
+            cities.innerHTML = html;
+        }
+        function submit() {
+            let Name = document.getElementById("name").value;
+            let Email = document.getElementById("Email").value;
+            let MobileNumber = document.getElementById("no").value;
+            let Coundivy = document.getElementById("country").value;
+            let State = document.getElementById("state").value;
+            let City = document.getElementById("city").value;
+            let Address = document.getElementById("address").value;
+            var error = document.getElementById("error");
+            var regx = /^([a-z A-Z]+)$/;
+            var regx1 = /^([a-z A-Z 0-9\.-]+)@([a-z A-Z 0-9 -]+).([a-z]{2,20})$/;
+            var regx2 = /^([0-9]{10})$/;
+            var regx3 = /^([a-z A-Z 0-9\,-]+)$/;
+            if (Name == "") {
+                error.innerHTML = "Please Enter your Name";
+                return false
+            } else if (regx.test(Name) == false) {
+                error.innerHTML = "Please Enter Only Charater";
+                return false
+            } else if (Email == "") {
+                error.innerHTML = "Please Enter your Email";
+                return false
+            } else if (regx1.test(Email) == false) {
+                error.innerHTML = "Please Enter Valid Email";
+                return false
+            } else if (MobileNumber == "") {
+                error.innerHTML = "Please Enter your Mobile Number";
+                return false
+            } else if (regx2.test(MobileNumber) == false) {
+                error.innerHTML = "Please Enter your Valid Mobile Number";
+                return false
+            } else if (document.getElementById("state").value == "") {
+                document.getElementById("error").innerHTML = "Please Select State";
+                return false
+            } else if (document.getElementById("city").value == "Select City") {
+                document.getElementById("error").innerHTML = "Please Select City";
+                return false
+            } else if (Address == "") {
+                error.innerHTML = "Please Enter your Address";
+                return false
+            } else if (regx3.test(Address) == false) {
+                error.innerHTML = "Please Enter your valid Address";
+                return false
+            } else {
+                error.innerHTML = "";
+            }
+            let arr = [];
+            let Record = {
+                Name: Name,
+                Email: Email,
+                MobileNumber: MobileNumber,
+                Coundivy: Coundivy,
+                State: State,
+                City: City,
+                Address: Address,
+            }
+            arr.push(Record)
+            localStorage.setItem(Name, JSON.stringify(arr));
+            return true
+        }
+        function getItem() {
+            var Gujarat = ["Ahmedabad", "Rajkot", "Jamnagar", "Bhuj", "Gandhinagar"];
+            var Madhyapradesh = ["Indor", "Bhopal", "Japalpur", "Gwalior", "Katni"];
+            var Maharastra = ["Mumbai", "Pune", "Nagar", "Thane", "Nashik"];
+            var odisha = ["Bhubaneswer", "cuttack", "Rourkela", "Berhampur", "Puri"];
+            var Rajeshthan = ["Jaipur", "Udaipur", "Jaisalmer", "Jodhpur", "Bikaner"];
+            var cities = document.getElementById("city");
+            var html = 'option selected="selected">Select City</option>';
+            let Name = document.getElementById("name").value;
+            var error = document.getElementById("error");
+            if (Name == "") {
+                error.innerHTML = "Please Enter Name";
+                document.getElementById("name").focus();
+            }
+
+            var Stored = JSON.parse(localStorage.getItem(Name));
+            document.getElementById("name").value = Stored[0].Name;
+            document.getElementById("Email").value = Stored[0].Email;
+            document.getElementById("no").value = Stored[0].MobileNumber;
+            document.getElementById("state").value = Stored[0].State;
+            {
+                if (document.getElementById("state").value == "Gujarat") {
+                    for (i = 0; i < Gujarat.length; i++) {
+                        html += '<option value="' + Gujarat[i] + '">' + Gujarat[i] + '</option>';
+                    }
+                } else if (document.getElementById("state").value == "Madhya pradesh") {
+                    for (j = 0; j < Madhyapradesh.length; j++) {
+                        html += '<option value="' + Madhyapradesh[j] + '">' + Madhyapradesh[j] + '</option>';
+                    }
+                } else if (document.getElementById("state").value == "Maharastra") {
+                    for (k = 0; k < Maharastra.length; k++) {
+                        html += '<option value="' + Maharastra[k] + '">' + Maharastra[k] + '</option>';
+                    }
+                } else if (document.getElementById("state").value == "odisha") {
+                    for (h = 0; h < Madhyapradesh.length; h++) {
+                        html += '<option value="' + odisha[h] + '">' + odisha[h] + '</option>';
+                    }
+                } else if (document.getElementById("state").value == "Rajeshthan") {
+                    for (n = 0; n < Madhyapradesh.length; n++) {
+                        html += '<option value="' + Rajeshthan[n] + '">' + Rajeshthan[n] + '</option>';
+                    }
+                }
+                cities.innerHTML = html;
+            }
+            document.getElementById("address").value = Stored[0].Address;
+        }
+    </script>
+</body>
+
+</html>
